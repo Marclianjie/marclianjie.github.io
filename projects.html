@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Projects · Lianjie (Marc) Shi</title>
+<meta name="description" content="Lianjie (Marc) Shi — statistics and psychology graduate (UBC). Bayesian and latent-variable models for noisy human data, time series, and machine learning.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="masthead"><div class="in"><a class="site" href="index.html">Marc Shi</a><nav aria-label="Pages"><a href="research.html">Research</a><a href="projects.html" aria-current="page">Projects</a><a href="Shi_Lianjie_CV.pdf">CV</a></nav></div></header>
+<div class="layout">
+  <aside class="sidebar" aria-label="About Marc">
+      <div class="avatar" aria-hidden="true">LS</div>
+      <p class="name">Lianjie (Marc) Shi</p>
+      <p class="role">BA, Statistics &amp; Psychology, University of British Columbia<br>Visiting student, Peking University</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><span>Beijing, China</span></li>
+        <li><svg viewBox="0 0 24 24"><path d="M2 5h20v14H2zm2 2v.5l8 5 8-5V7z"/></svg><a href="mailto:lianjie.marc.shi@outlook.com">Email</a></li>
+        <li><svg viewBox="0 0 24 24"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.4c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.38-3.88-1.38-.53-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg><a href="https://github.com/Marclianjie" target="_blank" rel="noopener">GitHub</a></li>
+        <li><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6zm8 1.5V8h4.5zM8 12h8v1.5H8zm0 3h8v1.5H8zm0 3h5v1.5H8z"/></svg><a href="Shi_Lianjie_CV.pdf" target="_blank" rel="noopener">CV (PDF)</a></li>
+      </ul>
+    </aside>
+  <main>
+    <h1 class="page">Projects</h1>
+    <div class="prose"><p>Three projects in depth, then shorter summaries. Each figure is drawn from the project's own numbers.</p></div>
+    <figure class="fig" aria-labelledby="fig0-cap">
+      <div class="legend" aria-hidden="true">
+        <span><i class="sw a"></i>latent state</span>
+        <span><i class="sw band"></i>90% interval</span>
+        <span><i class="sw" style="background:var(--ink);opacity:.75"></i>rating (1–7)</span>
+      </div>
+      <svg id="fig0" viewBox="0 0 560 230" role="img" aria-label="Simulated latent emotion trajectory over seven days with five prompts per day, with ordinal ratings shown as dots."></svg>
+      <figcaption id="fig0-cap"><b>Fig. 0</b>A simulated week of experience sampling: five prompts a day, each answered on a 7-point scale. The ratings are coarse, noisy readings of a smoother latent state, which is the structure the models in Fig. 1 estimate.</figcaption>
+    </figure>
+<section id="projects" aria-labelledby="projects-h">
+    <div class="sec-head"><h2 id="projects-h">Selected projects</h2></div>
+
+    <!-- Fig 1 -->
+    <article class="plate" aria-labelledby="p1">
+      <div class="plate-head">
+        <h3 id="p1">Bayesian models for day-to-day emotion dynamics</h3>
+        <div class="meta"><span>STAT 405 Bayesian Statistics, UBC</span><span>Apr 2026</span><span>two-person project</span></div>
+      </div>
+      <div class="plate-body">
+        <div class="plate-text">
+          <p>Self-reported emotions are coarse, noisy snapshots of an underlying state. Which Bayesian model best describes how happiness evolves over a day, and is fast variational inference a safe substitute for Hamiltonian Monte Carlo?</p>
+          <div>
+            <h4>Data</h4>
+            <p>Experience-sampling data from Kullar et al. (2024): 105 participants rating nine emotions on a 1–7 scale, five prompts a day.</p>
+          </div>
+          <div>
+            <h4>Approach</h4>
+            <ul>
+              <li>An ordered-logistic measurement model linking each 7-point rating to a continuous latent state.</li>
+              <li>Three nested latent processes: independent states; autoregression on the previous prompt and the same prompt the day before (lag 5); and that model plus lagged <i>enthusiastic</i>, <i>pleased</i> and <i>relaxed</i>.</li>
+              <li>Focal emotion and predictors chosen by leave-one-subject-out, one-step-ahead screening.</li>
+              <li>Every model fit in Stan with NUTS and with mean-field VI, compared by PSIS-LOO, and checked with R̂, bulk and tail ESS, rank plots and exact invariance tests.</li>
+            </ul>
+          </div>
+          <div class="finding">
+            <p>Adding the latent time structure is the large gain: expected log predictive density rises by <span class="num">1,893</span> under HMC. Lagged emotions add a further <span class="num">38</span>.</p>
+            <p>HMC beats mean-field VI for every model, and the gap is widest once temporal dependence enters (<span class="num">471</span> for the AR model), consistent with VI missing posterior correlation.</p>
+          </div>
+          <p class="small muted">I led the modeling: I developed the three models, implemented them in Stan, ran the diagnostics and the model comparison, and compiled the results.</p>
+          <div class="tags"><span class="tag">Stan</span><span class="tag">R</span><span class="tag">HMC / NUTS</span><span class="tag">Variational inference</span><span class="tag">PSIS-LOO</span></div>
+          <div class="plate-links"><a href="reports/bayesian-emotion-dynamics.pdf" target="_blank" rel="noopener">Report (PDF)</a><a href="https://github.com/Marclianjie/data-science-portfolio/tree/main/bayesian-emotion-dynamics" target="_blank" rel="noopener">Code and data on GitHub</a></div>
+        </div>
+        <figure class="fig" aria-labelledby="fig1-cap">
+          <div class="legend" aria-hidden="true"><span><i class="sw a"></i>HMC (NUTS)</span><span><i class="sw b"></i>Mean-field VI</span></div>
+          <svg id="fig1" viewBox="0 0 560 250" role="img" aria-label="Dot plot of ELPD for three models under HMC and VI."></svg>
+          <figcaption id="fig1-cap"><b>Fig. 1</b>Out-of-sample fit by model and inference method: PSIS-LOO expected log predictive density, where higher is better. Whiskers show ±1 SE, which are small at this scale.</figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <!-- Fig 2 -->
+    <article class="plate" aria-labelledby="p2">
+      <div class="plate-head">
+        <h3 id="p2">What actually helps a small CNN generalize?</h3>
+        <div class="meta"><span>Deep Learning &amp; AI, Peking University</span><span>Oct 2026</span><span>solo</span></div>
+      </div>
+      <div class="plate-body">
+        <div class="plate-text">
+          <p>For a convolutional network trained from scratch on Dogs vs. Cats, how much do batch normalization and data augmentation each contribute, and do their benefits stack?</p>
+          <div>
+            <h4>Setup</h4>
+            <ul>
+              <li>A 2 × 2 ablation: BatchNorm on or off, crossed with augmentation (padded random crop and horizontal flip) on or off.</li>
+              <li>The same 319,874-parameter CNN in every arm (three convolutional blocks, Kaiming initialization), with the same seed, batch order and optimizer (Adam, learning rate 10⁻³) for 30 epochs.</li>
+              <li>15,000 training and 10,000 validation images. Parameter counts checked by hand against the model summary.</li>
+            </ul>
+          </div>
+          <div class="finding">
+            <p>Augmentation is the largest effect: <span class="num">+7.3</span> points of final validation accuracy (80.3% to 87.6%), and it removed the late-epoch decline the baseline showed. BatchNorm adds <span class="num">+2.2</span>, mostly by steadying late training.</p>
+            <p>The two did not stack: with both on, accuracy peaked at 86.4% and ended at 82.5%. With one seed per arm, that interaction needs repeated runs before it means anything.</p>
+          </div>
+          <div class="tags"><span class="tag">PyTorch</span><span class="tag">CNN</span><span class="tag">Ablation study</span><span class="tag">Data augmentation</span></div>
+          <div class="plate-links"><a href="reports/cnn-ablation.pdf" target="_blank" rel="noopener">Report (PDF)</a><a href="https://github.com/Marclianjie/data-science-portfolio/tree/main/cnn-ablation-dogs-vs-cats" target="_blank" rel="noopener">Notebook on GitHub</a></div>
+        </div>
+        <figure class="fig" aria-labelledby="fig2-cap">
+          <div class="legend" aria-hidden="true"><span><i class="sw ln m"></i>baseline</span><span><i class="sw ln md"></i>+ BatchNorm</span><span><i class="sw ln"></i>+ augmentation</span><span><i class="sw ln b"></i>+ both</span></div>
+          <svg id="fig2" viewBox="0 0 560 260" role="img" aria-label="Validation accuracy by epoch for four CNN configurations over 30 epochs."></svg>
+          <figcaption id="fig2-cap"><b>Fig. 2</b>Validation accuracy after every epoch for the four arms of the ablation. Augmentation keeps improving to the last epoch; the other three plateau or fall back.</figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <!-- Fig 3 -->
+    <article class="plate" aria-labelledby="p3">
+      <div class="plate-head">
+        <h3 id="p3">A leakage-free model comparison for brand choice</h3>
+        <div class="meta"><span>Machine Learning &amp; AI, Peking University</span><span>Oct 2026</span><span>solo</span></div>
+      </div>
+      <div class="plate-body">
+        <div class="plate-text">
+          <p>Predict whether a shopper buys Citrus Hill or Minute Maid orange juice from 1,070 purchases (the ISLP <i>OJ</i> data), using an evaluation protocol that cannot leak information from the test set.</p>
+          <div>
+            <h4>Approach</h4>
+            <ul>
+              <li>scikit-learn pipelines, so encoding and scaling are fit inside each fold, with one fixed set of five stratified folds for every model.</li>
+              <li>Grid-searched logistic regression, k-nearest neighbors, a decision tree and gradient boosting, and traced their bias–variance curves.</li>
+              <li>Found that nine of the 17 predictors duplicate information in others (store recodings and derived price columns), and showed that a compact eight-predictor set loses nothing.</li>
+              <li>Scored the chosen model once on the untouched test set, then stress-tested it by training on early weeks and predicting later ones.</li>
+            </ul>
+          </div>
+          <div class="finding">
+            <p>The compact logistic regression reached <span class="num">84.1%</span> test accuracy and <span class="num">0.92</span> ROC-AUC, against a 61% majority baseline. On future weeks it held at <span class="num">80.3%</span> and <span class="num">0.89</span>.</p>
+            <p>Brand loyalty dominates both the coefficients and permutation importance, followed by the price gap between brands.</p>
+          </div>
+          <div class="tags"><span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Cross-validation</span><span class="tag">Permutation importance</span></div>
+          <div class="plate-links"><a href="reports/oj-brand-choice-report.pdf" target="_blank" rel="noopener">Report (PDF)</a><a href="https://github.com/Marclianjie/data-science-portfolio/tree/main/oj-brand-choice" target="_blank" rel="noopener">Code on GitHub</a></div>
+        </div>
+        <figure class="fig" aria-labelledby="fig3-cap">
+          <div class="legend" aria-hidden="true"><span><i class="sw a"></i>5-fold CV accuracy</span><span><i class="sw sq"></i>held-out test</span><span><i class="sw dia"></i>future weeks</span></div>
+          <svg id="fig3" viewBox="0 0 560 270" role="img" aria-label="Cross-validated accuracy of six models with test and future-week accuracy for the selected model."></svg>
+          <figcaption id="fig3-cap"><b>Fig. 3</b>Cross-validated accuracy for each tuned model. The shaded row is the model chosen before the test set was opened.</figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <h3 style="font-size:1.35rem;margin:0.5rem 0 1.1rem">More projects</h3>
+    <div class="cards">
+      <article class="card">
+        <div class="meta" style="margin-top:0"><span>Deep Learning &amp; AI, Peking University</span><span>Sep – Oct 2026</span></div>
+        <h3>Deep learning from first principles</h3>
+        <figure aria-label="Validation accuracy by epoch: CNN versus logistic regression">
+          <div class="legend" aria-hidden="true"><span><i class="sw ln"></i>CNN</span><span><i class="sw ln b"></i>logistic regression</span></div>
+          <svg id="mini-dl" viewBox="0 0 360 170" role="img" aria-label="CNN validation accuracy rises to about 93.6 percent; logistic regression fluctuates around 80 to 86 percent."></svg>
+        </figure>
+        <p>A sequence of PyTorch builds. On simulated regression data (n = 1,000, p = 10, 100 replications) I compared closed-form OLS with full-batch and mini-batch gradient descent, studied how learning rate and batch count shape convergence, checked autograd against hand-derived gradients, and tested Adam. I then fit a two-hidden-layer MLP for image regression and a LeNet-style CNN for image classification on a 5,500-image face dataset.</p>
+        <p class="stat">Mini-batch GD matched OLS to four decimals in RMSE; the CNN reached 93.6% validation accuracy vs 84.2% for logistic regression on the same pixels</p>
+        <p class="role">Individual work. <a href="https://github.com/Marclianjie/data-science-portfolio/tree/main/deep-learning-foundations" target="_blank" rel="noopener">Notebooks on GitHub</a></p>
+      </article>
+      <article class="card">
+        <div class="meta" style="margin-top:0"><span>STAT 443 Time Series</span><span>Mar 2026</span></div>
+        <h3>Forecasting daily temperature in Delhi</h3>
+        <figure aria-label="Holdout RMSE by forecasting model">
+          <svg id="mini-delhi" viewBox="0 0 360 214" role="img" aria-label="Holdout RMSE for eight of the fifteen models, from 1.65 for the best seasonal regression to 3.27 for the same-day-last-year benchmark."></svg>
+        </figure>
+        <p>Compared 15 forecasting models on four years of daily data by holdout RMSE, from seasonal benchmarks and exponential smoothing to ARIMA and regression with ARMA errors.</p>
+        <p class="stat">Best: sinusoidal seasonal regression + lagged wind + ARMA(4,1) errors, RMSE 1.65 °C (benchmark 3.27 °C)</p>
+        <p class="role">Course project, team of four. I owned the results: comparing the 15 models and checking the final model's residuals (variogram, ACF and PACF, normality). <a href="reports/delhi-temperature-forecasting.pdf" target="_blank" rel="noopener">Report (PDF)</a> · <a href="https://github.com/Marclianjie/data-science-portfolio/tree/main/delhi-temperature-forecasting" target="_blank" rel="noopener">GitHub</a></p>
+      </article>
+      <article class="card">
+        <div class="meta" style="margin-top:0"><span>STAT 404 Experimental Design</span><span>Nov 2025</span></div>
+        <h3>A 2³ factorial experiment on coffee acidity</h3>
+        <figure aria-label="Interaction plot of mean pH by brand and drink type">
+          <svg id="mini-coffee" viewBox="0 0 360 170" role="img" aria-label="Latte pH is high for both brands; Americano pH rises from 4.8 at Tim Hortons to 5.9 at Starbucks."></svg>
+        </figure>
+        <p>Brand and drink type as treatment factors, serving temperature as a block, randomized run order within blocks, and pH as the response. Active effects identified with a half-normal plot.</p>
+        <p class="stat">Lowest acidity: Starbucks latte, with a strong brand × type interaction</p>
+        <p class="role">Course project, team of four. I proposed the question, designed and ran the experiment, revised the analysis in R, and wrote the proposal and slides. <a href="reports/coffee-acidity-slides.pdf" target="_blank" rel="noopener">Slides (PDF)</a> · <a href="https://github.com/Marclianjie/data-science-portfolio/tree/main/coffee-acidity-factorial" target="_blank" rel="noopener">Code and data</a></p>
+      </article>
+      <article class="card">
+        <div class="meta" style="margin-top:0"><span>STAT 301 Statistical Modelling</span><span>Nov 2025</span></div>
+        <h3>Predicting Airbnb prices in Budapest</h3>
+        <figure aria-label="Median listing price by distance from the city centre">
+          <div class="legend" aria-hidden="true"><span><i class="sw ln"></i>entire home</span><span><i class="sw ln b"></i>private room</span></div>
+          <svg id="mini-airbnb" viewBox="0 0 360 170" role="img" aria-label="Median price falls from about 182 euros near the centre to about 116 euros 7 to 12 km out for entire homes, and from about 127 to 73 euros for private rooms."></svg>
+        </figure>
+        <p>LASSO regression on log price for weekday and weekend listings, with a held-out test set. Nine predictors survived, led by room type, capacity, bedrooms and location indices.</p>
+        <p class="stat">Test R² 0.35 on the log scale; MAE about €45</p>
+        <p class="role">Course project, team of four. I built the modeling pipeline and wrote the report. <a href="reports/airbnb-budapest.pdf" target="_blank" rel="noopener">Report (PDF)</a> · <a href="https://github.com/Marclianjie/data-science-portfolio/tree/main/airbnb-budapest-lasso" target="_blank" rel="noopener">Notebook</a></p>
+      </article>
+    </div>
+  </section>
+  </main>
+</div>
+<footer class="site-footer"><div class="in"><span>© 2026 Lianjie (Marc) Shi · Last updated November 2026</span><span><a href="https://github.com/Marclianjie" target="_blank" rel="noopener">GitHub</a> · <a href="Shi_Lianjie_CV.pdf" target="_blank" rel="noopener">CV</a></span></div></footer>
+<script src="assets/figs.js"></script>
+</body>
+</html>
